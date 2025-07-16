@@ -1,0 +1,29 @@
+def diferenca_finita(f, x, h=1e-5, metodo="central"):
+    """
+    Aproxima a derivada de uma função f no ponto x usando diferenças finitas.
+
+    Parâmetros:
+    - f: função a ser derivada.
+    - x: ponto onde a derivada será aproximada.
+    - h: passo (default = 1e-5).
+    - metodo: 'progressiva', 'regressiva' ou 'central' (default = 'central').
+
+    Retorna:
+    - Aproximação da derivada de f em x.
+    """
+    if metodo == "progressiva":
+        return (f(x + h) - f(x)) / h
+    elif metodo == "regressiva":
+        return (f(x) - f(x - h)) / h
+    elif metodo == "central":
+        return (f(x + h) - f(x - h)) / (2 * h)
+    else:
+        raise ValueError("Método inválido. Escolha 'progressiva', 'regressiva' ou 'central'.")
+
+
+# Exemplo de uso
+if _name_ == "_main_":
+    import math
+    f = math.sin
+    x = math.pi / 4
+    print("Aproximação da derivada de sin(x) em π/4 (central):", diferenca_finita(f, x, metodo="central"))
